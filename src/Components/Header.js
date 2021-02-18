@@ -7,6 +7,9 @@ import Hidden from "@material-ui/core/Hidden";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { clicked } from "../Redux/Duck/Clicker";
+import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Header() {
   const dispatch = useDispatch();
@@ -14,7 +17,14 @@ function Header() {
     dispatch(clicked());
   }
   let click = useSelector((state) => state.click.click);
-  console.log(click);
+  let basket = useSelector((state) => state.basket.basket);
+  const toastStyle = {
+    position: "fixed",
+    top: 50,
+    left: 525,
+    zIndex: 100,
+    padding: 5,
+  };
   return (
     <div className="header">
       <Hidden mdUp>
@@ -24,14 +34,17 @@ function Header() {
           className="header__menuIcon"
         />
       </Hidden>
+      <ToastContainer className="toastStyle" />
       <div style={{ display: click ? "block" : "none" }}>
         <SideBar />
       </div>
+      <Link to="/">
+        <img
+          className="header__logo"
+          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+        />
+      </Link>
 
-      <img
-        className="header__logo"
-        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-      />
       <div className="header__search">
         <input className="header__searchInput" type="text" />
         <SearchIcon className="header__searchIcon" />
@@ -49,10 +62,15 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>
         </div>
-        <div className="header__optionBasket">
-          <ShoppingBasketIcon className="header__basketIcon" />
-          <span className="header__optionLineTwo header__basketCount">0</span>
-        </div>
+
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
+          <div className="header__optionBasket">
+            <ShoppingBasketIcon className="header__basketIcon" />
+            <span className="header__optionLineTwo header__basketCount">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
       <div className="header__search1">
         <input className="header__searchInput1" type="text" />

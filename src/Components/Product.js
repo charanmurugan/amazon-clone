@@ -1,7 +1,32 @@
 import React from "react";
 import "../styles/Product.css";
+import { useDispatch } from "react-redux";
 
-function Product({ title, image, price, rating }) {
+import "react-toastify/dist/ReactToastify.css";
+import { notifyAdded } from "../Redux/Duck/Basket";
+
+function Product({ id, title, image, price, rating }) {
+  const dispatch = useDispatch();
+  const updateCart = () => {
+    addToBasket();
+    notifyadd();
+  };
+
+  const addToBasket = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        price: price.replace(",", ""),
+        rating: rating,
+      },
+    });
+  };
+  const notifyadd = () => {
+    notifyAdded();
+  };
   return (
     <div className="product">
       <div className="product__info">
@@ -19,7 +44,7 @@ function Product({ title, image, price, rating }) {
         </div>
       </div>
       <img src={image} alt="" />
-      <button>Add to Basket</button>
+      <button onClick={updateCart}>Add to Basket</button>
     </div>
   );
 }
