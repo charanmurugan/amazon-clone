@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export const initialState = {
   basket: [],
+  user: null,
 };
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => amount + parseInt(item.price), 0);
@@ -29,6 +30,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         basket: newBasket,
+      };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

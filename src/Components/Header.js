@@ -10,21 +10,22 @@ import { clicked } from "../Redux/Duck/Clicker";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { auth } from "./firebase";
 
 function Header() {
   const dispatch = useDispatch();
   function handleClick() {
     dispatch(clicked());
   }
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
   let click = useSelector((state) => state.click.click);
   let basket = useSelector((state) => state.basket.basket);
-  const toastStyle = {
-    position: "fixed",
-    top: 50,
-    left: 525,
-    zIndex: 100,
-    padding: 5,
-  };
+  let user = useSelector((state) => state.basket.user);
+
   return (
     <div className="header">
       <Hidden mdUp>
@@ -50,10 +51,16 @@ function Header() {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__optionLineOne">Hello Guest</span>
-          <span className="header__optionLineTwo">Sign In</span>
-        </div>
+        <Link to={!user && "/login"} style={{ textDecoration: "none" }}>
+          <div onClick={handleAuthentication} className="header__option">
+            <span className="header__optionLineOne">
+              Hello {user ? `${user.email} ` : `Guest`}
+            </span>
+            <span className="header__optionLineTwo">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
+          </div>
+        </Link>
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>

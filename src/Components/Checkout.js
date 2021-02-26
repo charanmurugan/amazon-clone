@@ -5,6 +5,8 @@ import CardProduct from "./CartProduct";
 import { useSelector } from "react-redux";
 function Checkout() {
   let basket = useSelector((state) => state.basket.basket);
+  let user = useSelector((state) => state.basket.user);
+
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -14,6 +16,7 @@ function Checkout() {
           alt="ad image"
         />
         <div>
+          <h3>{user ? ` Hello${user.email}` : `Hello , Guest`}</h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
         </div>
         {basket.map((ele) => {
