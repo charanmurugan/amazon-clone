@@ -7,6 +7,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React, { useEffect } from "react";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
+import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const promise = loadStripe(
+  " pk_test_51IK2FCBl6Bo1DJ4oUer0KkRTTAL9Fj21vhzqJz8xkCyE1eTm0DW5L39opmBWbBI7NRexOJTaNbzSWN6BITBnw67a00FtdvsFmQ"
+);
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,9 +43,15 @@ function App() {
             <Header />
             <Home />
           </Route>
-          <Route path="/checkout">
+          <Route exact path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route exact path="/payment">
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
         </Switch>
       </div>
