@@ -3,7 +3,7 @@ import "../styles/CardProduct.css";
 import { notifyRemove } from "../Redux/Duck/Basket";
 import { useDispatch } from "react-redux";
 
-function CartProduct({ id, title, image, price, rating }) {
+function CartProduct({ id, title, image, price, rating, hideButton }) {
   const dispatch = useDispatch();
   const updateCart = () => {
     removeFromBasket();
@@ -40,7 +40,9 @@ function CartProduct({ id, title, image, price, rating }) {
               <p>⭐</p>
             ))}
         </div>
-        <button onClick={updateCart}>Remove from Basket</button>
+        {!hideButton && (
+          <button onClick={updateCart}>Remove from Basket</button>
+        )}
       </div>
     </div>
   );

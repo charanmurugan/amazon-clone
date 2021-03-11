@@ -1,12 +1,13 @@
 import { Link, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Payment.css";
 import CartProduct from "./CartProduct";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../Redux/Duck/Basket";
 import axios from "./axios";
+import { db } from "./firebase";
 
 function Payment() {
   let user = useSelector((state) => state.basket.user);
@@ -21,6 +22,7 @@ function Payment() {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
+  const dispatch = useDispatch();
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
@@ -51,9 +53,22 @@ function Payment() {
       .then(({ paymentIntent }) => {
         // paymentIntent = payment confirmation
 
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
 
         history.replace("/orders");
       });

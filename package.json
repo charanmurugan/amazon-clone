@@ -14,6 +14,7 @@
     "fake-identity": "^1.0.6",
     "firebase": "^8.2.7",
     "firebase-tools": "^9.3.0",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-alice-carousel": "^2.4.0",
     "react-currency-format": "^1.0.0",
