@@ -38,15 +38,3 @@
 .product__rating {
   display: flex;
 }
-@media only screen and (max-width: 600px) {
-  .product {
-    position: relative;
-    top: 85px;
-    max-height: 350px;
-  }
-}
-@media only screen and (max-width: 600px) and (min-width: 400px) {
-  .product {
-    min-width: 325px;
-  }
-}

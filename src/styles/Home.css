@@ -19,16 +19,13 @@
   margin-bottom: -150px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
-@media only screen and (max-width: 600px) {
-  .home__row {
-    display: block;
-    max-width: 275px;
-    position: relative;
-    left: 10px;
-  }
+.home_langImage1 {
+  object-fit: contain;
+  width: 50%;
+  position: relative;
+  left: 350px;
 }
-@media only screen and (max-width: 600px) and (min-width: 400px) {
-  .home__row {
-    display: block;
-  }
+.home_langImage2 {
+  object-fit: contain;
+  width: 100%;
 }
