@@ -1,0 +1,72 @@
+.footer {
+  position: relative;
+  top: -4px;
+}
+.footer__contact {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #43505e;
+  color: #ffffff;
+  font: 16px "Amazon Ember,arial,sans-serif";
+  padding-top: 20px;
+  line-height: 2;
+}
+ul {
+  list-style-type: none;
+  font: 15px "Amazon Ember,arial,sans-serif";
+  line-height: 2;
+}
+hr {
+  color: #ffffff;
+  z-index: 100;
+}
+.footer__lang {
+  background-color: #43505e;
+  position: relative;
+  top: 1px;
+}
+.footer__langCountry li {
+  float: left;
+  padding: 16.4px;
+  background-color: #43505e;
+  color: #ffffff;
+  font: 15px "Amazon Ember,arial,sans-serif";
+  position: relative;
+  top: -1px;
+}
+.footer__langOption {
+  justify-items: center;
+}
+.footer__langOption img {
+  width: 100px;
+  object-fit: contain;
+  position: relative;
+  left: 550px;
+  top: 40px;
+}
+.options {
+  color: #ffffff;
+  position: relative;
+  left: 700px;
+  top: -15px;
+  width: 10%;
+  border: 1px solid #ffffff;
+  padding: 5px;
+}
+.options select {
+  background-color: #43505e;
+  padding: 10px;
+  border: none;
+  color: #ffffff;
+  position: relative;
+  left: 30px;
+}
+.fa-globe {
+  position: relative;
+  left: 20px;
+}
+.footer__year {
+  background-color: #232f3e;
+  color: #ffffff;
+  text-align: center;
+}

@@ -12,6 +12,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders";
 import Location from "./Location";
+import ScrollToTop from "./ScrollToTop";
+import Footer from "./Footer";
 
 const promise = loadStripe(
   "pk_test_51ITLCTE1sb3HErtQERLRr6G8ELU9ne5qO4TZWfYId0N1OfixxzwtckmTV37Hd5a631T2LSVRDzM2UfVACqCeiMgM00FwnvKv77"
@@ -45,6 +47,8 @@ function App() {
             <Header />
             <Location />
             <Home />
+            <ScrollToTop />
+            <Footer />
           </Route>
           <Route exact path="/checkout">
             <Header />
